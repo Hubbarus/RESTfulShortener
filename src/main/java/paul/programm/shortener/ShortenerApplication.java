@@ -33,7 +33,7 @@ public class ShortenerApplication {
 	private springfox.documentation.service.ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Shortener API",
-				"Test Api for resume",
+				"CV code example",
 				"1.0",
 				"Free to use",
 				new Contact("Paul Ponomarev", "", "rocksquare@gmail.com"),
