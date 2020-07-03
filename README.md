@@ -5,8 +5,10 @@ There are 3 Endpoints:
 2. Returns original URL by shortened one.
 3. Redirects user, when click on short URL to original one.
 
+To edit server and port go to application.properties.
+
 All shortened URL are unique and have TTL for 10 minutes.
-Data exchange in JSON format, for example:
+Data exchange is in JSON format, for example:
 
 1. PostMapping: 
  {
@@ -18,4 +20,6 @@ Data exchange in JSON format, for example:
      "shortened" : "http://hostname.com/n"
  }
  
-Also, see swagger-file in the root.
+Also, see swagger-file "api-documentation" in the root.
+
+P.S: This API only for my personal CV.
