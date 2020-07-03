@@ -22,11 +22,7 @@ public class Helper {
         long current = urlSet.getTimestamp().getTime();
         long delta = 10 * 60 * 1000;
 
-        if (now - current > delta) {
-            return false;
-        }
-
-        return true;
+        return now - current <= delta;
     }
 
     public static long getActualId() {

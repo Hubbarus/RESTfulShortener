@@ -1,0 +1,6 @@
+2020-июл.-03 22:38:07.703 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-июл.-03 22:38:44.660 ERROR java.net.MalformedURLExceptionhave been caught. Invalid URL: jkbhvvkj
+2020-июл.-03 22:39:35.874 WARN  Bad request. Request body does not contain "original" field
+2020-июл.-03 22:40:00.759 ERROR java.net.MalformedURLExceptionhave been caught. Invalid URL: google.tt
+2020-июл.-03 23:05:18.416 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-июл.-03 23:06:04.822 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

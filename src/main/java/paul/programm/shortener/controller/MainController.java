@@ -1,6 +1,8 @@
 package paul.programm.shortener.controller;
 
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,9 @@ import java.net.MalformedURLException;
 @RestController
 public class MainController {
 
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
     private final ShortenerImpl shortener;
     private UrlRepository urlRepository;
-    private long lastId = 0;
 
     @Autowired
     public MainController(ShortenerImpl shortener, UrlRepository urlRepository) {
@@ -33,7 +35,10 @@ public class MainController {
     response = UrlSet.class)
     public ResponseEntity<?> shortIt(@RequestBody UrlSet set) {
 
-        if (set.getOriginal() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (set.getOriginal() == null) {
+            logger.warn("Bad request. Request body does not contain \"original\" field");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         if (urlRepository.findShortenedByOriginal(set.getOriginal()) != null) {
             return new ResponseEntity<>(urlRepository.findShortenedByOriginal(set.getOriginal()), HttpStatus.OK);
@@ -44,6 +49,7 @@ public class MainController {
             urlRepository.save(res);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (MalformedURLException e) {
+            logger.error(e.getClass().getName() + "have been caught. Invalid URL: " + set.getOriginal());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -53,11 +59,15 @@ public class MainController {
             notes = "Returns JSON object by short URL",
             response = UrlSet.class)
     public ResponseEntity<?> returnOriginal(@RequestBody UrlSet set) {
-        if (set.getShortened() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (set.getShortened() == null) {
+            logger.warn("Bad request. Request body does not contain \"shortened\" field");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         if (urlRepository.findOriginalByShortened(set.getShortened()) != null) {
             return new ResponseEntity<>(urlRepository.findOriginalByShortened(set.getShortened()), HttpStatus.OK);
         }
+        logger.error("Unknown error in \"returnOriginal\" method");
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
@@ -74,14 +84,18 @@ public class MainController {
                     try {
                         response.sendRedirect(tmp.getOriginal());
                     } catch (IOException e) {
+                        logger.error(e.getMessage() + "have been caught. Error while redirecting");
                         e.printStackTrace();
                     }
                 }
             } else {
                 urlRepository.deleteById(tmp.getId());
-                return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+                logger.error(tmp.getOriginal() + "was expired and removed from database");
+                return new ResponseEntity<>(HttpStatus.REQUEST_TIMEOUT);
             }
         }
+
+        logger.error("Unknown error in \"goToOrig\" method");
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
