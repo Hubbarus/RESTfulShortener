@@ -9,7 +9,10 @@
             "name": "Paul Ponomarev",
             "email": "rocksquare@gmail.com"
         },
-        "license": {}
+        "license": {
+            "name": "WTFPL",
+            "url": "http://www.wtfpl.net/"
+        }
     },
     "host": "localhost:8080",
     "basePath": "/",
