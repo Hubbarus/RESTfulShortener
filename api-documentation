@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Test Api for resume",
+        "description": "CV code example",
         "version": "1.0",
         "title": "Shortener API",
         "termsOfService": "Free to use",

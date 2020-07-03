@@ -13,7 +13,6 @@ import paul.programm.shortener.service.ShortenerImpl;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.sql.Timestamp;
 
 @RestController
 public class MainController {
