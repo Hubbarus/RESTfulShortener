@@ -1,0 +1,1 @@
+2020-июл.-04 00:04:30.956 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
