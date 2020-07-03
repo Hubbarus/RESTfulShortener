@@ -1,0 +1,225 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Test Api for resume",
+        "version": "1.0",
+        "title": "Shortener API",
+        "termsOfService": "Free to use",
+        "contact": {
+            "name": "Paul Ponomarev",
+            "email": "rocksquare@gmail.com"
+        },
+        "license": {}
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "main-controller",
+            "description": "Main Controller"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "main-controller"
+                ],
+                "summary": "Returns original URL",
+                "description": "Returns JSON object by short URL",
+                "operationId": "returnOriginalUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "set",
+                        "description": "set",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UrlSet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/UrlSet"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "main-controller"
+                ],
+                "summary": "Makes short URL",
+                "description": "Returns JSON object with short URL, original URL, id in Database and creation timestamp",
+                "operationId": "shortItUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "set",
+                        "description": "set",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UrlSet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/UrlSet"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/{str}": {
+            "get": {
+                "tags": [
+                    "main-controller"
+                ],
+                "summary": "Redirects to original URL",
+                "description": "When click on short URL redirects to original URL",
+                "operationId": "goToOrigUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "str",
+                        "in": "path",
+                        "description": "str",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "UrlSet": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The unique ID in database"
+                },
+                "original": {
+                    "type": "string",
+                    "description": "Original URL"
+                },
+                "shortened": {
+                    "type": "string",
+                    "description": "Short URL"
+                },
+                "timestamp": {
+                    "description": "Creation timestamp",
+                    "$ref": "#/definitions/Timestamp"
+                }
+            },
+            "description": "Set of URL's"
+        },
+        "Timestamp": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "day": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "hours": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "minutes": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "month": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nanos": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "seconds": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "time": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "timezoneOffset": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "year": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}
