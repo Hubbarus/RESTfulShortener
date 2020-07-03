@@ -1,7 +1,7 @@
 This API makes the unique short URLs.
 
 There are 3 Endpoints:
-1. Uses for making short URL from original and adding to DB.
+1. Makes short URL from original and adds to DB.
 2. Returns original URL by shortened URL.
 3. Redirects user by clicking on short URL to original one.
 
