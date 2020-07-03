@@ -37,8 +37,8 @@ public class ShortenerApplication {
 				"1.0",
 				"Free to use",
 				new Contact("Paul Ponomarev", "", "rocksquare@gmail.com"),
-				"",
-				""
+				"WTFPL",
+				"http://www.wtfpl.net/"
 		);
 	}
 }
