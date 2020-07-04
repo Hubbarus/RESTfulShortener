@@ -68,7 +68,7 @@ public class MainController {
             return new ResponseEntity<>(urlRepository.findOriginalByShortened(set.getShortened()), HttpStatus.OK);
         }
         logger.error("Unknown error in \"returnOriginal\" method");
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     //redirecting
@@ -96,7 +96,7 @@ public class MainController {
         }
 
         logger.error("Unknown error in \"goToOrig\" method");
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
