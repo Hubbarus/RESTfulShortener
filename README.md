@@ -8,7 +8,7 @@
  - Returns original URL by shortened URL.
  - Redirects user by clicking on short URL to original one.
  
-To edit server and port go to `application.properties` file.
+To edit server and port go to [`application.properties`](https://github.com/Hubbarus/RESTfulShortener/blob/master/src/main/resources/application.properties) file.
 
 All shortened URL are unique and have TTL for 10 minutes. Data exchange is in JSON format, for example:
 
@@ -29,12 +29,12 @@ All shortened URL are unique and have TTL for 10 minutes. Data exchange is in JS
 ### Response Example
 ```sh
 {
-    "id": 1,
-    "original": "http://foo.bar",
-    "shortened": "http://hostname.com:8080/n",
-    "timestamp": "2020-07-03T13:33:53.363+00:00"
+    "id" : 1
+    "original" : "http://foo.bar"
+    "shortened" : "http://hostname.com:8080/n"
+    "timestamp" : 
 }
 ```
-Also, see swagger-file `api-documentation` in the root.
+Also, see swagger-file [`api-documentation`](https://app.swaggerhub.com/apis/Hubbarus/shortener-api/1.0).
 
-P.S: This API only for my personal CV.
+P.S: This API only for my personal [`CV`](https://paulponomarev.netlify.app/).
